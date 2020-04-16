@@ -51,7 +51,7 @@ def validate(candidate: str):
 def main(length=8):
     while True:
         alphabet = string.ascii_letters + string.digits
-        candidate = ''.join(secrets.choice(alphabet) for i in range(length))
+        candidate = "".join(secrets.choice(alphabet) for i in range(length))
 
         if validate(candidate):
             print(f"passed {candidate}")
