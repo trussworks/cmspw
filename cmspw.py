@@ -1,27 +1,7 @@
 #!/usr/bin/env python3
 #
 """
-EUA password generator
-
-EUA rules implemented in this script are:
-
-- Must start with a letter
-- At least one number (0-9)
-- At least one Lowercase alphabetic character (a-z)
-- At least one Upper Case alphabetic character (A-Z)
-- MUST BE EXACTLY 8 characters long
-- May not include "punctuation characters" (undocumented)
-
-Rules NOT implemented:
-
-- Cannot include your EUA UserID and any part of your name
-- Cannot include any word/word portion prohibited by the defined CMS dictionary
-- Password can’t contain 50% characters from previous password
-- Be different from the previous 24 passwords
-
-Usage:
-
-$ python3 cmspw.py
+CMS password generator
 """
 
 import secrets
