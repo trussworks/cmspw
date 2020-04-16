@@ -24,8 +24,7 @@ Usage:
 $ python3 euapw.py
 """
 
-import os
-import base64
+import secrets
 import string
 
 
@@ -49,11 +48,11 @@ def validate(candidate: str):
         return True
 
 
-def main(n_bytes=27, length=8):
+def main(length=8):
     while True:
-        candidate = str(
-            base64.b64encode(os.urandom(n_bytes)), "ascii"
-        )[:length]
+        alphabet = string.ascii_letters + string.digits
+        candidate = ''.join(secrets.choice(alphabet) for i in range(length))
+
         if validate(candidate):
             print(f"passed {candidate}")
             break
