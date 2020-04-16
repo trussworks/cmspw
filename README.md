@@ -1,4 +1,6 @@
-# EUA password generator
+# CMS password generator
+
+## EUA
 
 EUA rules implemented in this script are:
 
@@ -24,7 +26,7 @@ You need python3:
 brew install python3
 ```
 
-Copy `euapw.py` anywhere convenient.
+Copy `cmspw.py` anywhere convenient.
 
 ## Usage
 
@@ -32,7 +34,7 @@ It will generate random alphanumeric strings and mark those that EUA would
 reject as "failed", and stop when a string matches the rule set.
 
 ```console
-$ python3 euapw.py
+$ python3 cmspw.py
 failed 1MtIhKhA
 passed qJbcNJ2Y
 ```

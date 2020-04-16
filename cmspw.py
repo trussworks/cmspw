@@ -21,7 +21,7 @@ Rules NOT implemented:
 
 Usage:
 
-$ python3 euapw.py
+$ python3 cmspw.py
 """
 
 import secrets

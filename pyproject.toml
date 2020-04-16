@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "euapw"
+name = "cmspw"
 version = "0.1.0"
-description = "generates passwords for CMS Enterprise User Authentication (EUA)"
+description = "generates passwords for CMS"
 authors = ["Ryan Delaney <ryan@truss.works>"]
 
 [tool.poetry.dependencies]
