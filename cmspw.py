@@ -8,7 +8,10 @@ import secrets
 import string
 
 
-def validate_eua(candidate: str):
+def validate_eua(candidate: str) -> bool:
+    """
+    Validate a candidate password according to EUA rules
+    """
     try:
         # Must start with a letter
         assert candidate[0] in string.ascii_letters
