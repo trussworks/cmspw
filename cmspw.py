@@ -8,7 +8,7 @@ import secrets
 import string
 
 
-def validate(candidate: str):
+def validate_eua(candidate: str):
     try:
         # Must start with a letter
         assert candidate[0] in string.ascii_letters
@@ -33,7 +33,7 @@ def main(length=8):
         alphabet = string.ascii_letters + string.digits
         candidate = "".join(secrets.choice(alphabet) for i in range(length))
 
-        if validate(candidate):
+        if validate_eua(candidate):
             print(f"passed {candidate}")
             break
         else:
