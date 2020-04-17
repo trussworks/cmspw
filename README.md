@@ -50,5 +50,5 @@ brew install poetry
 Inside the project directory you can enter a virtual environment like so:
 
 ```console
-poetry shell
+poetry install && poetry shell
 ```
