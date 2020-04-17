@@ -38,3 +38,15 @@ eua = [
 @pytest.mark.parametrize("pwd, expected", eua)
 def test_eua(pwd, expected):
     assert cmspw.validate_eua(pwd) == expected
+
+
+@pytest.fixture
+def argparse_mock(mocker):
+    return mocker.patch("argparse.ArgumentParser", autospec=True)
+
+
+def test_argparser_called(argparse_mock):
+    cmspw.parse_args()
+    argparse_mock.assert_called_once_with(
+        prog="cmspw", description="generates passwords for CMS",
+    )
