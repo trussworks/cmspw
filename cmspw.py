@@ -4,9 +4,34 @@
 CMS password generator
 """
 
+import argparse
 import secrets
 import string
 import json
+
+
+def parse_args() -> argparse.Namespace:
+    """Define an argument parser and return the parsed arguments."""
+    parser = argparse.ArgumentParser(
+        prog="cmspw", description="generates passwords for CMS",
+    )
+    parser.add_argument(
+        "--ruleset",
+        "-r",
+        help="rule set to validate against. can be one of ['eua', 'vpn'].",
+        type=str,
+        required=True,
+    )
+    parser.add_argument(
+        "--length",
+        "-l",
+        help="password length. if ruleset is 'eua', this is ignored.",
+        type=int,
+        metavar="NUM",
+        default=0,
+    )
+
+    return parser.parse_args()
 
 
 def validate_cloudvpn(candidate: str) -> bool:
@@ -76,12 +101,46 @@ def validate_eua(candidate: str) -> bool:
         return True
 
 
-def main(length=8):
+def main(args):
+    _dispatch = {
+        "eua": {
+            "validator": validate_eua,
+            "length": 8,
+            "min_length": 8,
+            "max_length": 8,
+            "alphabet": string.ascii_letters + string.digits,
+        },
+        "vpn": {
+            "validator": validate_cloudvpn,
+            "length": args.length or 16,
+            "min_length": 16,
+            "max_length": None,
+            "alphabet": string.ascii_letters
+            + string.digits
+            + string.punctuation,
+        },
+    }
+    try:
+        validator = _dispatch[args.ruleset].get("validator")
+        alphabet = _dispatch[args.ruleset].get("alphabet")
+        length = _dispatch[args.ruleset].get("length")
+        min_length = _dispatch[args.ruleset].get("min_length")
+        max_length = _dispatch[args.ruleset].get("max_length")
+    except KeyError:
+        print(f"Ruleset not found: {args.ruleset}")
+        print("Must be one of {}".format(list(_dispatch)))
+        return 1
+
+    if not min_length <= length <= (max_length or 9999):
+        print(f"Password length {length} out of bounds")
+        print(f"Minimum length: {min_length}")
+        print(f"Maximum length: {max_length}")
+        return 1
+
     while True:
-        alphabet = string.ascii_letters + string.digits
         candidate = "".join(secrets.choice(alphabet) for i in range(length))
 
-        if validate_eua(candidate):
+        if validator(candidate):
             print(f"passed {candidate}")
             break
         else:
@@ -89,4 +148,5 @@ def main(length=8):
 
 
 if __name__ == "__main__":
-    main()
+    args = parse_args()
+    main(args)
