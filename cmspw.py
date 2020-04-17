@@ -1,34 +1,46 @@
 #!/usr/bin/env python3
 #
 """
-EUA password generator
-
-EUA rules implemented in this script are:
-
-- Must start with a letter
-- At least one number (0-9)
-- At least one Lowercase alphabetic character (a-z)
-- At least one Upper Case alphabetic character (A-Z)
-- MUST BE EXACTLY 8 characters long
-- May not include "punctuation characters" (undocumented)
-
-Rules NOT implemented:
-
-- Cannot include your EUA UserID and any part of your name
-- Cannot include any word/word portion prohibited by the defined CMS dictionary
-- Password can’t contain 50% characters from previous password
-- Be different from the previous 24 passwords
-
-Usage:
-
-$ python3 cmspw.py
+CMS password generator
 """
 
 import secrets
 import string
 
 
-def validate(candidate: str):
+def validate_cloudvpn(candidate: str) -> bool:
+    """
+    Validate a candidate password according to CloudVPN rules
+    """
+    try:
+        # Cannot contain keyboard walks of 3 or more consecutive keyboard keys
+        # in a row
+        # (e.g. asd, zaq, 123, was, pol, ser, gyu, bhj, 9o0, p;[, etc.)
+
+        # Password length greater than 15 characters.
+        assert len(candidate) > 15
+
+        # Contain 3 the following:
+        # - 1 digits (0-9).
+        # - 1 symbols (!, @, #, $, %, *, etc.).
+        # - 1 uppercase English letters (A-Z).
+        # - 1 lowercase English letters (a-z).
+        (
+            any(char in string.digits for char in candidate)
+            + any(char in string.punctuation for char in candidate)
+            + any(char in string.ascii_uppercase for char in candidate)
+            + any(char in string.ascii_lowercase for char in candidate)
+        ) >= 3
+    except AssertionError:
+        return False
+    else:
+        return True
+
+
+def validate_eua(candidate: str) -> bool:
+    """
+    Validate a candidate password according to EUA rules
+    """
     try:
         # Must start with a letter
         assert candidate[0] in string.ascii_letters
@@ -51,9 +63,9 @@ def validate(candidate: str):
 def main(length=8):
     while True:
         alphabet = string.ascii_letters + string.digits
-        candidate = ''.join(secrets.choice(alphabet) for i in range(length))
+        candidate = "".join(secrets.choice(alphabet) for i in range(length))
 
-        if validate(candidate):
+        if validate_eua(candidate):
             print(f"passed {candidate}")
             break
         else:
