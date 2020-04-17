@@ -18,6 +18,24 @@ Rules NOT implemented:
 - Password can’t contain 50% characters from previous password
 - Be different from the previous 24 passwords
 
+## CloudVPN
+
+CloudVPN rules implemented in this script are:
+
+- Cannot contain keyboard walks of 3 or more consecutive keyboard keys in a row
+  (e.g. asd, zaq, 123, was, pol, ser, gyu, bhj, 9o0, p;[, etc.)
+- Password length greater than 15 characters.
+- Contain 3 out of 4 the following:
+  - 1 digits (0-9).
+  - 1 symbols (!, @, #, $, %, \*, etc.).
+  - 1 uppercase English letters (A-Z).
+  - 1 lowercase English letters (a-z).
+
+Rules NOT implemented:
+
+- Password must differ from previous password by 24 password(s).
+- Password must be at least 1day(s) since last password change.
+
 ## Installation
 
 You need python3:
