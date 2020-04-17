@@ -8,6 +8,35 @@ import secrets
 import string
 
 
+def validate_cloudvpn(candidate: str) -> bool:
+    """
+    Validate a candidate password according to CloudVPN rules
+    """
+    try:
+        # Cannot contain keyboard walks of 3 or more consecutive keyboard keys
+        # in a row
+        # (e.g. asd, zaq, 123, was, pol, ser, gyu, bhj, 9o0, p;[, etc.)
+
+        # Password length greater than 15 characters.
+        assert len(candidate) > 15
+
+        # Contain 3 the following:
+        # - 1 digits (0-9).
+        # - 1 symbols (!, @, #, $, %, *, etc.).
+        # - 1 uppercase English letters (A-Z).
+        # - 1 lowercase English letters (a-z).
+        (
+            any(char in string.digits for char in candidate)
+            + any(char in string.punctuation for char in candidate)
+            + any(char in string.ascii_uppercase for char in candidate)
+            + any(char in string.ascii_lowercase for char in candidate)
+        ) >= 3
+    except AssertionError:
+        return False
+    else:
+        return True
+
+
 def validate_eua(candidate: str) -> bool:
     """
     Validate a candidate password according to EUA rules
