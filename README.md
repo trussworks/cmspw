@@ -48,8 +48,8 @@ Copy `cmspw.py` anywhere convenient.
 
 ## Usage
 
-It will generate random alphanumeric strings and mark those that EUA would
-reject as "failed", and stop when a string matches the rule set.
+It will generate random alphanumeric strings and mark those that EUA/CloudVPN
+would reject as "failed", and stop when a string matches the rule set.
 
 ```console
 $ python3 cmspw.py --help
