@@ -16,11 +16,11 @@ cloudvpn = [
     (pre_str + "/:`" + end_str, True),
     (pre_str + "hqK" + end_str, True),
     (pre_str + "hgf" + end_str, False),
-    (pre_str + "hhg" + end_str, False),
+    (pre_str + "hhg" + end_str, True),
     (pre_str + "hfg" + end_str, True),
     (pre_str + ".<l" + end_str, False),
     (pre_str + "-{}" + end_str, False),
-    (pre_str + "{[}" + end_str, False),
+    (pre_str + "{[}" + end_str, True),
 ]
 
 
