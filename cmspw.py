@@ -66,7 +66,7 @@ def validate_cloudvpn(candidate: str) -> bool:
         # - 1 symbols (!, @, #, $, %, *, etc.).
         # - 1 uppercase English letters (A-Z).
         # - 1 lowercase English letters (a-z).
-        (
+        assert (
             any(char in string.digits for char in candidate)
             + any(char in string.punctuation for char in candidate)
             + any(char in string.ascii_uppercase for char in candidate)
