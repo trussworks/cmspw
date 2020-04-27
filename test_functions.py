@@ -1,8 +1,8 @@
 import pytest
 import cmspw
 
-pre_str = "________"
-end_str = "________"
+pre_str = "1%______"
+end_str = "_______M"
 
 cloudvpn = [
     ("pheifoeX6eehoo", False),
