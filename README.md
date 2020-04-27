@@ -44,8 +44,6 @@ You need python3:
 brew install python3
 ```
 
-Copy `cmspw.py` anywhere convenient.
-
 ## Usage
 
 It will generate random alphanumeric strings and mark those that EUA/CloudVPN

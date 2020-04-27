@@ -1,8 +1,8 @@
 import pytest
 import cmspw
 
-pre_str = "a%che1mk"
-end_str = "fhXek6^a"
+pre_str = "________"
+end_str = "________"
 
 cloudvpn = [
     ("pheifoeX6eehoo", False),
@@ -15,6 +15,12 @@ cloudvpn = [
     (pre_str + "/:." + end_str, False),
     (pre_str + "/:`" + end_str, True),
     (pre_str + "hqK" + end_str, True),
+    (pre_str + "hgf" + end_str, False),
+    (pre_str + "hhg" + end_str, True),
+    (pre_str + "hfg" + end_str, True),
+    (pre_str + ".<l" + end_str, False),
+    (pre_str + "-{}" + end_str, False),
+    (pre_str + "{[}" + end_str, True),
 ]
 
 
