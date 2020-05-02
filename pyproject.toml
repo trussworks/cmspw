@@ -17,6 +17,9 @@ pytest-cov = "^2.8.1"
 pytest-mock = "^3.0.0"
 mock = "^4.0.2"
 
+[tool.poetry.scripts]
+cmspw = 'cmspw.__main__:main'
+
 [tool.black]
 line-length = 79
 target_version = ["py37"]

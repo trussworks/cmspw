@@ -101,7 +101,9 @@ def validate_eua(candidate: str) -> bool:
         return True
 
 
-def main(args):
+def main():
+    args = parse_args()
+
     _dispatch = {
         "eua": {
             "validator": validate_eua,
@@ -148,5 +150,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    args = parse_args()
-    main(args)
+    main()
