@@ -13,7 +13,7 @@ from .data.kbmap import qwerty as kbmap
 def parse_args() -> argparse.Namespace:
     """Define an argument parser and return the parsed arguments."""
     parser = argparse.ArgumentParser(
-        prog="cmspw", description="generates passwords for CMS",
+        prog="cmspw", description="generates passwords for CMS"
     )
     parser.add_argument(
         "--ruleset",
@@ -122,23 +122,21 @@ def main():
         print(f"Ruleset not found: {args.ruleset}")
         print("Must be one of {}".format(list(_dispatch)))
         return 1
+    else:
+        rules = _dispatch[args.ruleset]
 
-    validator = _dispatch[args.ruleset].get("validator")
-    alphabet = _dispatch[args.ruleset].get("alphabet")
-    length = _dispatch[args.ruleset].get("length")
-    min_length = _dispatch[args.ruleset].get("min_length")
-    max_length = _dispatch[args.ruleset].get("max_length")
-
-    if not min_length <= length <= (max_length or 9999):
-        print(f"Password length {length} out of bounds")
-        print(f"Minimum length: {min_length}")
-        print(f"Maximum length: {max_length}")
+    if not rules["min_length"] <= rules["length"] <= rules["max_length"]:
+        print(f"Password length {rules['length']} out of bounds")
+        print(f"Minimum length: {rules['min_length']}")
+        print(f"Maximum length: {rules['max_length']}")
         return 1
 
     while True:
-        candidate = "".join(secrets.choice(alphabet) for i in range(length))
+        candidate = "".join(
+            secrets.choice(rules["alphabet"]) for i in range(rules["length"])
+        )
 
-        if validator(candidate):
+        if rules["validator"](candidate):
             print(f"passed {candidate}")
             break
         else:
