@@ -7,7 +7,7 @@ CMS password generator
 import argparse
 import secrets
 import string
-import json
+from .data.kbmap import qwerty as kbmap
 
 
 def parse_args() -> argparse.Namespace:
@@ -42,21 +42,17 @@ def validate_cloudvpn(candidate: str) -> bool:
         # Cannot contain keyboard walks of 3 or more consecutive keyboard keys
         # in a row
         # (e.g. asd, zaq, 123, was, pol, ser, gyu, bhj, 9o0, p;[, etc.)
-        with open("kbmap.json") as file:
-            kbmap = json.load(file)
 
-            chunks = [
-                candidate[i : i + 3] for i in range(0, len(candidate) - 2)
-            ]
-            for chunk in chunks:
-                assert not all(
-                    (
-                        chunk[0] in kbmap[chunk[1]],
-                        chunk[1] in kbmap[chunk[0]],
-                        chunk[1] in kbmap[chunk[2]],
-                        chunk[2] in kbmap[chunk[1]],
-                    )
+        chunks = [candidate[i : i + 3] for i in range(0, len(candidate) - 2)]
+        for chunk in chunks:
+            assert not all(
+                (
+                    chunk[0] in kbmap[chunk[1]],
+                    chunk[1] in kbmap[chunk[0]],
+                    chunk[1] in kbmap[chunk[2]],
+                    chunk[2] in kbmap[chunk[1]],
                 )
+            )
 
         # Password length greater than 15 characters.
         assert len(candidate) > 15
