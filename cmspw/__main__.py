@@ -118,16 +118,16 @@ def main():
             + string.punctuation,
         },
     }
-    try:
-        validator = _dispatch[args.ruleset].get("validator")
-        alphabet = _dispatch[args.ruleset].get("alphabet")
-        length = _dispatch[args.ruleset].get("length")
-        min_length = _dispatch[args.ruleset].get("min_length")
-        max_length = _dispatch[args.ruleset].get("max_length")
-    except KeyError:
+    if args.ruleset not in _dispatch:
         print(f"Ruleset not found: {args.ruleset}")
         print("Must be one of {}".format(list(_dispatch)))
         return 1
+
+    validator = _dispatch[args.ruleset].get("validator")
+    alphabet = _dispatch[args.ruleset].get("alphabet")
+    length = _dispatch[args.ruleset].get("length")
+    min_length = _dispatch[args.ruleset].get("min_length")
+    max_length = _dispatch[args.ruleset].get("max_length")
 
     if not min_length <= length <= (max_length or 9999):
         print(f"Password length {length} out of bounds")
