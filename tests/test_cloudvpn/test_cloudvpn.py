@@ -1,5 +1,5 @@
 import pytest
-import cmspw
+from cmspw import __main__ as cmspw
 
 pre_str = "1%______"
 end_str = "_______M"
@@ -27,32 +27,3 @@ cloudvpn = [
 @pytest.mark.parametrize("pwd, expected", cloudvpn)
 def test_cloudvpn(pwd, expected):
     assert cmspw.validate_cloudvpn(pwd) == expected
-
-
-eua = [
-    ("maia5Chi", True),
-    ("maia5chi", False),
-    ("MAIA5CHI", False),
-    ("0aia5Chi", False),
-    ("ma!a5Chi", False),
-    ("maiza5Chi", False),
-    ("maiza5C", False),
-    ("a", False),
-]
-
-
-@pytest.mark.parametrize("pwd, expected", eua)
-def test_eua(pwd, expected):
-    assert cmspw.validate_eua(pwd) == expected
-
-
-@pytest.fixture
-def argparse_mock(mocker):
-    return mocker.patch("argparse.ArgumentParser", autospec=True)
-
-
-def test_argparser_called(argparse_mock):
-    cmspw.parse_args()
-    argparse_mock.assert_called_once_with(
-        prog="cmspw", description="generates passwords for CMS",
-    )
