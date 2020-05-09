@@ -7,6 +7,7 @@ CMS password generator
 import argparse
 import secrets
 import string
+import math
 from .data.kbmap import qwerty as kbmap
 
 
@@ -112,7 +113,7 @@ def main():
             "validator": validate_cloudvpn,
             "length": args.length or 16,
             "min_length": 16,
-            "max_length": None,
+            "max_length": math.inf,
             "alphabet": string.ascii_letters
             + string.digits
             + string.punctuation,
