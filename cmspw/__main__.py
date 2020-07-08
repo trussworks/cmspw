@@ -80,6 +80,8 @@ def validate_eua(candidate: str) -> bool:
     Validate a candidate password according to EUA rules
     """
     try:
+        # MUST BE EXACTLY 8 characters long
+        assert len(candidate) == 8
         # Must start with a letter
         assert candidate[0] in string.ascii_letters
         # At least one number (0-9)
@@ -88,8 +90,6 @@ def validate_eua(candidate: str) -> bool:
         assert any(char in string.ascii_lowercase for char in candidate)
         # At least one Upper Case alphabetic character (A-Z)
         assert any(char in string.ascii_uppercase for char in candidate)
-        # MUST BE EXACTLY 8 characters long
-        assert len(candidate) == 8
         # May not include "punctuation characters" (undocumented)
         assert not any(char in string.punctuation for char in candidate)
     except AssertionError:

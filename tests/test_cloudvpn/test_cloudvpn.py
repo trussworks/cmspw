@@ -21,6 +21,7 @@ cloudvpn = [
     (pre_str + ".<l" + end_str, False),
     (pre_str + "-{}" + end_str, False),
     (pre_str + "{[}" + end_str, True),
+    ("", False),
 ]
 
 

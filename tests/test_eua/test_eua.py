@@ -11,6 +11,7 @@ eua = [
     ("maiza5Chi", False),
     ("maiza5C", False),
     ("a", False),
+    ("", False),
 ]
 
 
