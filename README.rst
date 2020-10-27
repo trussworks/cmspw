@@ -73,8 +73,8 @@ You need python3:
 Usage
 -----
 
-It will generate random alphanumeric strings and mark those that EUA/CloudVPN
-would reject as "failed", and stop when a string matches the rule set.
+Cryptographically random alphanumeric strings are generated, printing the first
+that complies with the EUA/CloudVPN ruleset to the standard output.
 
 .. code-block:: console
 
@@ -89,11 +89,9 @@ would reject as "failed", and stop when a string matches the rule set.
                            rule set to validate against. can be one of ['eua', 'vpn'].
      --length NUM, -l NUM  password length. if ruleset is 'eua', this is ignored.
    $ python3 -m cmspw --ruleset eua
-   failed 1MtIhKhA
-   passed qJbcNJ2Y
+   qJbcNJ2Y
    $ python3 -m cmspw --ruleset vpn --length 24
-   failed o[Pb*~9:)y8_<GH-99[cdR%N
-   passed 4H+-X^#XV(8'&wB5ZNn'H%>q
+   4H+-X^#XV(8'&wB5ZNn'H%>q
 
 Development
 -----------

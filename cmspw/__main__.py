@@ -134,12 +134,11 @@ def main():
 
     candidate = ""
     while not rules["validator"](candidate):
-        print(f"failed {candidate}")
         candidate = "".join(
             secrets.choice(rules["alphabet"]) for i in range(rules["length"])
         )
 
-    print(f"passed {candidate}")
+    print(f"{candidate}")
 
 
 if __name__ == "__main__":
