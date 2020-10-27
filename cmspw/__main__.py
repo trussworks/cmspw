@@ -132,16 +132,14 @@ def main():
         print(f"Maximum length: {rules['max_length']}")
         return 1
 
-    while True:
+    candidate = ""
+    while not rules["validator"](candidate):
+        print(f"failed {candidate}")
         candidate = "".join(
             secrets.choice(rules["alphabet"]) for i in range(rules["length"])
         )
 
-        if rules["validator"](candidate):
-            print(f"passed {candidate}")
-            break
-        else:
-            print(f"failed {candidate}")
+    print(f"passed {candidate}")
 
 
 if __name__ == "__main__":
