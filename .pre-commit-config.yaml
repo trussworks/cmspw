@@ -42,8 +42,3 @@ repos:
         language: system
         entry: poetry run flake8
         types: [python]
-
-  - repo: git://github.com/igorshubovych/markdownlint-cli
-    rev: v0.22.0
-    hooks:
-      - id: markdownlint
