@@ -51,7 +51,7 @@ CloudVPN rules implemented in this script are:
 * Contain 3 out of 4 the following:
 
   * 1 digits (0-9).
-  * 1 symbols (!, @, #, $, %, *, etc.).
+  * 1 symbols (!, @, #, $, %, \*, etc.).
   * 1 uppercase English letters (A-Z).
   * 1 lowercase English letters (a-z).
 
