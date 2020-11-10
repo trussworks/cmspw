@@ -69,6 +69,7 @@ You need python3:
 .. code-block:: console
 
    brew install python3
+   python3 -m pip install cmspw
 
 Usage
 -----
