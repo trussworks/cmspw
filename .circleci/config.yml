@@ -4,6 +4,9 @@ jobs:
   lint_and_test_python:
     docker:
       - image: python:3.7-buster
+      - auth:
+          password: $DOCKER_PASSWORD
+          username: $DOCKER_USERNAME
     steps:
       - checkout
       - run:
@@ -27,4 +30,6 @@ workflows:
   version: 2.1
   pipeline:
     jobs:
-      - lint_and_test_python
+    - lint_and_test_python:
+        context:
+        - org-global
