@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "cmspw"
-version = "1.1.1"
+version = "1.1.2"
 description = "generates passwords for CMS"
 authors = ["Ryan Delaney <ryan@truss.works>"]
 readme = "README.rst"
 repository = "https://github.com/trussworks/cmspw"
-homepage = "https://pypi.org/cmspw"
+homepage = "https://pypi.org/project/cmspw/"
 
 [tool.poetry.dependencies]
 python = "^3.7"
