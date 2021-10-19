@@ -58,7 +58,7 @@ CloudVPN rules implemented in this script are:
 Rules NOT implemented:
 
 
-* Password must differ from previous password by 24 password(s).
+* Password must differ from previous password by 24 password(s). (sic)
 * Password must be at least 1day(s) since last password change.
 
 Installation
