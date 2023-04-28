@@ -18,27 +18,27 @@ repos:
       - id: detect-private-key
       - id: check-docstring-first
       - id: check-toml
-      - id: check-yaml      
+      - id: check-yaml
 
   - repo: local
-      hooks:
-        - id: pyproject.toml
-          name: validate pyproject.toml
-          language: system
-          entry: poetry check
-          files: 'pyproject\.toml'
-          pass_filenames: false
+    hooks:
+      - id: pyproject.toml
+        name: validate pyproject.toml
+        language: system
+        entry: poetry check
+        files: 'pyproject\.toml'
+        pass_filenames: false
 
-        - id: black
-          name: black
-          stages: [commit]
-          language: system
-          entry: poetry run black
-          types: [python]
+      - id: black
+        name: black
+        stages: [commit]
+        language: system
+        entry: poetry run black
+        types: [python]
 
-        - id: flake8
-          name: flake8
-          stages: [commit]
-          language: system
-          entry: poetry run flake8
-          types: [python]
+      - id: flake8
+        name: flake8
+        stages: [commit]
+        language: system
+        entry: poetry run flake8
+        types: [python]
