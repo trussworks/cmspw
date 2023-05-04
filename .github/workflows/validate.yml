@@ -11,3 +11,5 @@ on:
 jobs:
   validate:
     uses: trussworks/shared-actions/.github/workflows/validate-python.yml@validate-python
+    with:
+      python-version: "3.7"
